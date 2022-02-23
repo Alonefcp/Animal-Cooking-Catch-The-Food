@@ -4,14 +4,44 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed = 1.0f;
-   
+    [SerializeField] private float speed = 0.3f;
+    [SerializeField] private Joystick joystic;
+
     void Update()
     {
-        float dir = Input.GetAxisRaw("Horizontal");
 
-        Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized*speed;
+#if UNITY_EDITOR
+        float dir = GetKeyboardAxis();
+#else
+        float dir =  GetJoysticAxis();
+#endif
 
-        transform.Translate(movDirection*Time.deltaTime);
+        Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized * speed;
+        transform.Translate(movDirection * Time.deltaTime);
+    }
+
+
+    float GetJoysticAxis()
+    {
+        float dir;
+        if (joystic.Horizontal > 0.2f)
+        {
+            dir = 1.0f;
+        }
+        else if (joystic.Horizontal < -0.2f)
+        {
+            dir = -1.0f;
+        }
+        else
+        {
+            dir = 0.0f;
+        }
+
+        return dir;
+    }
+
+    float GetKeyboardAxis()
+    {
+        return Input.GetAxisRaw("Horizontal");
     }
 }

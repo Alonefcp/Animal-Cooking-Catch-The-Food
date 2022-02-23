@@ -12,17 +12,12 @@ public class FoodSpawner : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(SpawnFruit());
+        InvokeRepeating("SpawnFruit", 3.0f,Random.Range(minSpawnTime, maxSpawnTime));
     }
 
-    IEnumerator SpawnFruit()
-    {
-        while(true)
-        {          
-            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Instantiate<Transform>(fruitPrefab, spawnPoint.position,spawnPoint.rotation,imageTarget);          
-
-            yield return new WaitForSeconds(Random.Range(minSpawnTime,maxSpawnTime));
-        }
+    void SpawnFruit()
+    {                
+        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Instantiate<Transform>(fruitPrefab, spawnPoint.position,spawnPoint.rotation,imageTarget);                       
     }
 }
