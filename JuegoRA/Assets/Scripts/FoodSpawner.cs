@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
 {
-    [SerializeField] private Transform fruitPrefab;
+    [SerializeField] private Food[] foodPrefabs;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private Transform imageTarget;
     [SerializeField] private float minSpawnTime = 0.5f;
@@ -12,12 +12,13 @@ public class FoodSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnFruit", 3.0f,Random.Range(minSpawnTime, maxSpawnTime));
+        InvokeRepeating("SpawnFruit", 2.0f,Random.Range(minSpawnTime, maxSpawnTime));
     }
 
     void SpawnFruit()
     {                
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        Instantiate<Transform>(fruitPrefab, spawnPoint.position,spawnPoint.rotation,imageTarget);                       
+        Food spawnedFood = foodPrefabs[Random.Range(0, foodPrefabs.Length)];
+        Instantiate<Food>(spawnedFood, spawnPoint.position,spawnPoint.rotation,imageTarget);                       
     }
 }

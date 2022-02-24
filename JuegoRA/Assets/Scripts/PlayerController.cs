@@ -7,6 +7,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed = 0.3f;
     [SerializeField] private Joystick joystic;
 
+    [SerializeField] private Transform rightLimit;
+    [SerializeField] private Transform leftLimit;
+
+    float startZ;
+    float startY;
+
+    private void Start()
+    {
+        startY = transform.position.y;
+        startZ = transform.position.z;
+    }
+
     void Update()
     {
 
@@ -17,9 +29,16 @@ public class PlayerController : MonoBehaviour
 #endif
 
         Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized * speed;
-        transform.Translate(movDirection * Time.deltaTime);
+        if(transform.position.x >= rightLimit.position.x)
+        {
+            transform.position = rightLimit.position;
+        }
+        else if(transform.position.x <= leftLimit.position.x)
+        {
+            transform.position = leftLimit.position;
+        }
+        transform.Translate(movDirection * Time.deltaTime,Space.Self);        
     }
-
 
     float GetJoysticAxis()
     {
