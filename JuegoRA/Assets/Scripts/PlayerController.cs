@@ -10,15 +10,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rightLimit;
     [SerializeField] private Transform leftLimit;
 
-    float startZ;
-    float startY;
-
-    private void Start()
-    {
-        startY = transform.position.y;
-        startZ = transform.position.z;
-    }
-
     void Update()
     {
 
@@ -63,4 +54,5 @@ public class PlayerController : MonoBehaviour
     {
         return Input.GetAxisRaw("Horizontal");
     }
+
 }

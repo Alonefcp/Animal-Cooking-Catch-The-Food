@@ -6,22 +6,26 @@ public class Food : MonoBehaviour
 {
     [SerializeField] float fallSpeed = 0.2f;
     [SerializeField] int scorePoints = 5;
+    [SerializeField] int losingPoints = 1;
     [SerializeField] private FoodType type;
+
 
     private void Update()
     {        
         transform.Translate(-Vector3.forward * Time.deltaTime * fallSpeed);
     }
 
-
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if(other.gameObject.tag=="Player")
         {
-            GameManager.instance.ChangeScore(scorePoints);
+            if (GameManager.instance.CurrentFoodOrder() == type) GameManager.instance.ChangeScore(scorePoints);
+            else GameManager.instance.ChangeScore(-1);
+
             GameObject.Destroy(gameObject);
         }
     }
+
 
     public FoodType GetFoodType()
     {

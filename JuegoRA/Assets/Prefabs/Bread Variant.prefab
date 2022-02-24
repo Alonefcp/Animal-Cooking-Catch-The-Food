@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bread Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 8283810672749378103, guid: c42acd1b27131c843a01490f17e9e467,
+        type: 3}
+      propertyPath: seconds
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8354886923112851850, guid: c42acd1b27131c843a01490f17e9e467,
         type: 3}
       propertyPath: m_RootOrder
@@ -76,6 +81,11 @@ PrefabInstance:
         type: 3}
       propertyPath: fallSpeed
       value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 8710919493575527437, guid: c42acd1b27131c843a01490f17e9e467,
+        type: 3}
+      propertyPath: scorePoints
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9107243687259043166, guid: c42acd1b27131c843a01490f17e9e467,
         type: 3}
