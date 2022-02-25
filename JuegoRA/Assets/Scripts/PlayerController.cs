@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -9,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Transform rightLimit;
     [SerializeField] private Transform leftLimit;
+
+    [SerializeField] private Transform splashEffect;
 
     void Update()
     {
@@ -55,4 +55,18 @@ public class PlayerController : MonoBehaviour
         return Input.GetAxisRaw("Horizontal");
     }
 
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Food")
+        {
+            Food food = other.gameObject.GetComponent<Food>();
+
+            if (food!=null && GameManager.instance.CurrentFoodOrder() == food.GetFoodType()) GameManager.instance.AddScore();
+            else GameManager.instance.SubstractTries();
+
+            Instantiate<Transform>(splashEffect, transform);
+            GameObject.Destroy(other.gameObject);
+        }
+    }
 }

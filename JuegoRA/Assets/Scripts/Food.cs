@@ -1,39 +1,27 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] int scorePoints = 5;
-    [SerializeField] int losingPoints = -1;
     [SerializeField] private FoodType type;
     [SerializeField]float fallSpeed = 0.1f;
+    [SerializeField]float rotateSpeed = 50f;
 
+    float rotateDir;
+
+    private void Start()
+    {
+        rotateDir = Random.Range(-1f, 1f) <=0 ? -1.0f : 1.0f;
+
+    }
 
     private void Update()
-    {        
+    {
+        transform.Rotate(Vector3.forward * Time.deltaTime*rotateSpeed*rotateDir);
         transform.Translate(-Vector3.forward * Time.deltaTime * fallSpeed);
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.gameObject.tag=="Player")
-        {
-            if (GameManager.instance.CurrentFoodOrder() == type) GameManager.instance.ChangeScore(scorePoints);
-            else GameManager.instance.ChangeScore(losingPoints);
-
-            GameObject.Destroy(gameObject);
-        }
-    }
-
 
     public FoodType GetFoodType()
     {
         return type;
-    }
-
-    public void setFallSpeed(float speed)
-    {
-        fallSpeed = speed;
     }
 }

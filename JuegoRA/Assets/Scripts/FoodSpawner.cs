@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FoodSpawner : MonoBehaviour
@@ -14,7 +12,7 @@ public class FoodSpawner : MonoBehaviour
 
     void Start()
     {
-        InvokeRepeating("SpawnFruit", 0.5f,Random.Range(minSpawnTime, maxSpawnTime));
+        InvokeRepeating("SpawnFruit", 0.2f,Random.Range(minSpawnTime, maxSpawnTime));
     }
 
     void SpawnFruit()

@@ -1,9 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FoodType { Meat, Fish, Bread,Ribs,Watermelon,Cake,Cheese}
+public enum FoodType { Meat, Fish, Bread, Ribs, Watermelon, Cake, Cheese}
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +15,8 @@ public class GameManager : MonoBehaviour
     private FoodType currentFood;
 
     private bool tracked = false;
+
+    private int nTries;
 
     void Awake()
     {
@@ -45,7 +45,9 @@ public class GameManager : MonoBehaviour
 //========================================= Orders =======================================
     void Start()
     {
-        InvokeRepeating("NextOrder", 0.5f, orderTime);
+        currentFood = (FoodType)Random.Range(0, System.Enum.GetValues(typeof(FoodType)).Length);
+        orderText.text = "Take " + ((FoodType)currentFood).ToString();
+        InvokeRepeating("NextOrder", 0.2f, orderTime);
     }
 
     void NextOrder()
@@ -64,13 +66,21 @@ public class GameManager : MonoBehaviour
     }
 
 //========================================== Score ======================================
-    public void ChangeScore(int amount)
+    public void AddScore()
     {
         if(scoreText!=null)
         {
-            score += amount;
+            score += 3;
             if (score <= 0) score = 0;
             scoreText.text = "Score: " + score.ToString();
         }       
-    }    
+    }
+
+    //========================================== Lives =====================================
+
+    public void SubstractTries()
+    {
+        nTries--;
+        if (nTries <= 0) { Debug.Log("GAME OVER"); nTries = 0; }
+    }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7419869587513866039}
   m_Layer: 0
   m_Name: Watermelon
-  m_TagString: Untagged
+  m_TagString: Food
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,10 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2730f4bfd6bfdc4cb6655aa7f3baa0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scorePoints: 3
-  losingPoints: 1
   type: 4
   fallSpeed: 0.08
+  rotateSpeed: 50
 --- !u!54 &778096140187090605
 Rigidbody:
   m_ObjectHideFlags: 0
