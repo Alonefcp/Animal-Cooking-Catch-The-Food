@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FoodType { Meat, Fish, Bread}
+public enum FoodType { Meat, Fish, Bread,Ribs,Watermelon,Cake,Cheese}
 
 public class GameManager : MonoBehaviour
 {
@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 //========================================= Orders =======================================
     void Start()
     {
-        if(orderText!=null)InvokeRepeating("NextOrder", 0.0f, orderTime);
+        InvokeRepeating("NextOrder", 0.5f, orderTime);
     }
 
     void NextOrder()

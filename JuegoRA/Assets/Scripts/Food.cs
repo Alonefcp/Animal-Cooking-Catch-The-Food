@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Food : MonoBehaviour
 {
-    [SerializeField] float fallSpeed = 0.2f;
     [SerializeField] int scorePoints = 5;
-    [SerializeField] int losingPoints = 1;
+    [SerializeField] int losingPoints = -1;
     [SerializeField] private FoodType type;
+    [SerializeField]float fallSpeed = 0.1f;
 
 
     private void Update()
@@ -20,7 +20,7 @@ public class Food : MonoBehaviour
         if(other.gameObject.tag=="Player")
         {
             if (GameManager.instance.CurrentFoodOrder() == type) GameManager.instance.ChangeScore(scorePoints);
-            else GameManager.instance.ChangeScore(-1);
+            else GameManager.instance.ChangeScore(losingPoints);
 
             GameObject.Destroy(gameObject);
         }
@@ -30,5 +30,10 @@ public class Food : MonoBehaviour
     public FoodType GetFoodType()
     {
         return type;
+    }
+
+    public void setFallSpeed(float speed)
+    {
+        fallSpeed = speed;
     }
 }

@@ -11,9 +11,10 @@ public class FoodSpawner : MonoBehaviour
     [SerializeField] private float maxSpawnTime = 1.0f;
 
 
+
     void Start()
     {
-        InvokeRepeating("SpawnFruit", 2.0f,Random.Range(minSpawnTime, maxSpawnTime));
+        InvokeRepeating("SpawnFruit", 0.5f,Random.Range(minSpawnTime, maxSpawnTime));
     }
 
     void SpawnFruit()
@@ -21,8 +22,8 @@ public class FoodSpawner : MonoBehaviour
         if(GameManager.instance.isTracked())
         {
             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-            Food spawnedFood = foodPrefabs[Random.Range(0, foodPrefabs.Length)];
-            Instantiate<Food>(spawnedFood, spawnPoint.position, spawnPoint.rotation, imageTarget);
+            Food food = foodPrefabs[Random.Range(0, foodPrefabs.Length)];
+            Instantiate<Food>(food, spawnPoint.position, spawnPoint.rotation, imageTarget);
         }                           
     }
 }
