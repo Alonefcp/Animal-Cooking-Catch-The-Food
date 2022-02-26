@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1671389453957212}
   m_LocalRotation: {x: -0.2588191, y: -0.9659258, z: -0.00000004846478, w: -0.000000180873}
   m_LocalPosition: {x: 0.712, y: 0.126, z: -1.089}
-  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4072760459055408}
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 5
-  fallSpeed: 0.08
+  fallSpeed: 0.07
   rotateSpeed: 50
 --- !u!54 &1129921718
 Rigidbody:
