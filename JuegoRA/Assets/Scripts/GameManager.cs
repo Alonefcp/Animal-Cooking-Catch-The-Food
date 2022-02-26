@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour
     private int highScore = 0;
     private bool tracked = false;
 
-
     void Awake()
     {
         // if the singleton hasn't been initialized yet
@@ -55,7 +54,7 @@ public class GameManager : MonoBehaviour
     {
         if(scoreText!=null)
         {
-            score += 3;
+            score += 1;
             if (score <= 0) score = 0;
             scoreText.text = "Score: " + score.ToString();
         }       
@@ -68,15 +67,19 @@ public class GameManager : MonoBehaviour
         nTries--;
         if (nTries <= 0) { nTries = 0; GameOver(); }
     }
+
 //========================================== Scenes ========================================
     public void StartPlaying()
     {
         mainMenu.SetActive(false);
+        score = 0;
+        scoreText.text = "Score: " + score.ToString();
         inGameMenu.SetActive(true);
         player.gameObject.SetActive(true);
         orderManager.SetActive(true);
         foodSpawner.gameObject.SetActive(true);
         foodSpawner.StartSpawningFood();
+
     }
 
     public void MainMenu()
@@ -91,7 +94,17 @@ public class GameManager : MonoBehaviour
         endMenu.SetActive(false);
         mainMenu.SetActive(true);
 
-        highScoreTextMainMenu.text = "High Score: " + highScore.ToString();
+        if (score > highScore)
+        {
+            highScore = score;
+            highScoreTextMainMenu.text = "¡New High Score: " + highScore.ToString() + "!";
+        }
+        else
+        {
+            highScoreTextMainMenu.text = "High Score: " + highScore.ToString();
+        }
+
+        score = 0;
     }
 
     private void GameOver()
@@ -109,14 +122,13 @@ public class GameManager : MonoBehaviour
         if(score > highScore)
         {
             highScore = score;
-            highScoreTextEndMenu.text = "¡New High Score: " + score.ToString() + "!";
+            highScoreTextEndMenu.text = "¡New High Score: " + highScore.ToString() + "!";
         }
         else
         {
-            highScoreTextEndMenu.text = "High Score: " + score.ToString();
+            highScoreTextEndMenu.text = "High Score: " + highScore.ToString();
         }
         
-        score = 0;
-             
+        score = 0;           
     }
 }

@@ -8,11 +8,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform rightLimit;
     [SerializeField] private Transform leftLimit;
 
-    [SerializeField] private Transform splashEffect;
+    [SerializeField] private ParticleSystem splashEffect;
     [SerializeField] private OrderManager orderManager;
 
-    Vector3 startPosition;
 
+    Vector3 startPosition;
+    float dir=0;
     private void Start()
     {
         startPosition = transform.position;
@@ -22,9 +23,9 @@ public class PlayerController : MonoBehaviour
     {
 
 #if UNITY_EDITOR
-        float dir = GetKeyboardAxis();
+        dir = GetKeyboardAxis();
 #else
-        float dir =  GetJoysticAxis();
+        dir =  GetJoysticAxis();
 #endif
 
         Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized * speed;
@@ -68,12 +69,12 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Food")
         {
-            Food food = other.gameObject.GetComponent<Food>();
+            //Food food = other.gameObject.GetComponent<Food>();
 
-            if (food!=null && orderManager.CurrentFoodOrder() == food.GetFoodType()) GameManager.instance.AddScore();
-            else GameManager.instance.SubstractTries();
+           /* if (food!=null && orderManager.CurrentFoodOrder() == food.GetFoodType())*/ GameManager.instance.AddScore();
+            //else GameManager.instance.SubstractTries();
 
-            Instantiate<Transform>(splashEffect, transform);
+            splashEffect.Play();          
             GameObject.Destroy(other.gameObject);
         }
     }
@@ -81,16 +82,6 @@ public class PlayerController : MonoBehaviour
     public void ResetPlayer()
     {
         transform.position = startPosition;
-        //ParticleSystem ps = GetComponentInChildren<ParticleSystem>();
-
-        //foreach (Transform t in transform)
-        //{
-        //    Debug.Log(t.gameObject.name);
-        //}
-
-        // if (ps!=null)
-        //{
-        //    GameObject.Destroy(ps.gameObject);
-        //}
+        joystic.ResetJoystick(Vector2.zero);
     }
 }
