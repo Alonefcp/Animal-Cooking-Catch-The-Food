@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FoodType { Meat, Fish, Bread, Ribs, Watermelon, Cake, Cheese}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
@@ -10,10 +8,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreTextEndMenu;
     [SerializeField] private Text highScoreTextMainMenu;
+    [SerializeField] private Text livesText;
 
     [SerializeField] private PlayerController player;
     [SerializeField] private FoodSpawner foodSpawner;
-    [SerializeField] private GameObject orderManager;
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject endMenu;
@@ -23,6 +21,7 @@ public class GameManager : MonoBehaviour
     private int score = 0;
     private int highScore = 0;
     private bool tracked = false;
+    private bool gameOver = false;
 
     void Awake()
     {
@@ -65,29 +64,36 @@ public class GameManager : MonoBehaviour
     public void SubstractTries()
     {
         nTries--;
+        livesText.text = "Lives: " + nTries.ToString();
         if (nTries <= 0) { nTries = 0; GameOver(); }
     }
 
+
+    public bool IsGameOver() { return gameOver; }
 //========================================== Scenes ========================================
     public void StartPlaying()
     {
+        gameOver = false;
         mainMenu.SetActive(false);
         score = 0;
         scoreText.text = "Score: " + score.ToString();
+        livesText.text = "Lives: " + nTries.ToString();
+
+
         inGameMenu.SetActive(true);
+
         player.gameObject.SetActive(true);
-        orderManager.SetActive(true);
+
         foodSpawner.gameObject.SetActive(true);
-        foodSpawner.StartSpawningFood();
 
     }
 
     public void MainMenu()
     {
+        gameOver = true;
         player.gameObject.SetActive(false);
-        orderManager.SetActive(false);
-        foodSpawner.clearFoodParent();
-        foodSpawner.StopSpawningFood();
+
+        foodSpawner.ClearFoodParent();
         foodSpawner.gameObject.SetActive(false);
 
         inGameMenu.SetActive(false);
@@ -109,14 +115,14 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        nTries = 3;
+        gameOver = true;
+        nTries = 4;
         player.ResetPlayer();
         player.gameObject.SetActive(false);
-        orderManager.SetActive(false);
-        foodSpawner.clearFoodParent();
-        foodSpawner.StopSpawningFood();
+
+        foodSpawner.ClearFoodParent();
         foodSpawner.gameObject.SetActive(false);
-        
+
         inGameMenu.SetActive(false);
         endMenu.SetActive(true);
         if(score > highScore)

@@ -9,41 +9,33 @@ public class FoodSpawner : MonoBehaviour
     [SerializeField] private float minSpawnTime = 0.5f;
     [SerializeField] private float maxSpawnTime = 1.0f;
     [SerializeField] private Transform foodParent;
-    int index = 0;
+    Transform previousSpawnPoint;
 
     void Start()
-    {
+    {      
+        previousSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
-        StartSpawningFood();
+        InvokeRepeating("SpawnFruit",0.2f, Random.Range(minSpawnTime, maxSpawnTime));
     }
 
-    IEnumerator SpawnFruit()
-    {         
-        while(true)
+    void SpawnFruit()
+    {                    
+        if(GameManager.instance.isTracked() && !GameManager.instance.IsGameOver())
         {
-            yield return new WaitForSeconds(Random.Range(minSpawnTime, maxSpawnTime));    
-            
-            if(GameManager.instance.isTracked())
+            Transform spawnPoint = spawnPoints[Random.Range(0,spawnPoints.Length)];
+            while(previousSpawnPoint==spawnPoint)
             {
-                Transform spawnPoint = /*spawnPoints[Random.Range(0, spawnPoints.Length)];*/spawnPoints[(index++) % spawnPoints.Length];
+                spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];                   
+            }
+            previousSpawnPoint = spawnPoint;
 
-                Food food = foodPrefabs[Random.Range(0, foodPrefabs.Length)];
-                Instantiate<Food>(food, spawnPoint.position, spawnPoint.rotation, foodParent);
-            }          
-        }                                
+            Food food = foodPrefabs[Random.Range(0, foodPrefabs.Length)];               
+            Instantiate<Food>(food, spawnPoint.position, spawnPoint.rotation, foodParent);
+        }                                         
     }
 
-    public void StartSpawningFood()
-    {
-        StartCoroutine(SpawnFruit());
-    }
 
-    public void StopSpawningFood()
-    {
-        StopCoroutine(SpawnFruit());
-    }
-
-    public void clearFoodParent()
+    public void ClearFoodParent()
     {
         foreach(Transform food in foodParent)
         {

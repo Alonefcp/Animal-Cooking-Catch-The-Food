@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform leftLimit;
 
     [SerializeField] private ParticleSystem splashEffect;
-    [SerializeField] private OrderManager orderManager;
+    //[SerializeField] private OrderManager orderManager;
 
 
     Vector3 startPosition;
@@ -69,14 +69,14 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Food")
         {
-            //Food food = other.gameObject.GetComponent<Food>();
-
-           /* if (food!=null && orderManager.CurrentFoodOrder() == food.GetFoodType())*/ GameManager.instance.AddScore();
-            //else GameManager.instance.SubstractTries();
-
-            splashEffect.Play();          
-            GameObject.Destroy(other.gameObject);
+            GameManager.instance.AddScore();
         }
+        else if(other.gameObject.tag=="Bomb")
+        {
+            GameManager.instance.SubstractTries();
+        }
+        splashEffect.Play();          
+        GameObject.Destroy(other.gameObject);
     }
 
     public void ResetPlayer()
