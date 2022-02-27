@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 4732421097043446}
   - component: {fileID: 1551882193}
   - component: {fileID: 7670720320836083226}
-  - component: {fileID: 1959116516029179589}
   - component: {fileID: 2268007714483431364}
   m_Layer: 0
   m_Name: Cheese
@@ -133,7 +132,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.04
   rotateSpeed: 50
-  bomb: 0
 --- !u!54 &7670720320836083226
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,19 +148,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &1959116516029179589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1268511459518578}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7781f69eda711d6489cd1c2aebcd402a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seconds: 12
 --- !u!65 &2268007714483431364
 BoxCollider:
   m_ObjectHideFlags: 0

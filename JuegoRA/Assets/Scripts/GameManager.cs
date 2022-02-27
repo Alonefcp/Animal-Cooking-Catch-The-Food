@@ -85,12 +85,14 @@ public class GameManager : MonoBehaviour
         player.gameObject.SetActive(true);
 
         foodSpawner.gameObject.SetActive(true);
-
     }
 
     public void MainMenu()
     {
+        nTries = 4;
         gameOver = true;
+
+        player.ResetPlayer();
         player.gameObject.SetActive(false);
 
         foodSpawner.ClearFoodParent();
@@ -111,20 +113,16 @@ public class GameManager : MonoBehaviour
         }
 
         score = 0;
-    }
+    } 
 
     private void GameOver()
     {
         gameOver = true;
         nTries = 4;
-        player.ResetPlayer();
-        player.gameObject.SetActive(false);
-
-        foodSpawner.ClearFoodParent();
-        foodSpawner.gameObject.SetActive(false);
-
+       
         inGameMenu.SetActive(false);
         endMenu.SetActive(true);
+
         if(score > highScore)
         {
             highScore = score;

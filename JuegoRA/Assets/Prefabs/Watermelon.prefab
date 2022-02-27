@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4766796992241416}
   - component: {fileID: 3915193051502392304}
   - component: {fileID: 778096140187090605}
-  - component: {fileID: 4485913272256459089}
   - component: {fileID: 7419869587513866039}
   m_Layer: 0
   m_Name: Watermelon
@@ -50,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.04
   rotateSpeed: 50
-  bomb: 0
 --- !u!54 &778096140187090605
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -67,19 +65,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &4485913272256459089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1228912776443452}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7781f69eda711d6489cd1c2aebcd402a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seconds: 12
 --- !u!65 &7419869587513866039
 BoxCollider:
   m_ObjectHideFlags: 0

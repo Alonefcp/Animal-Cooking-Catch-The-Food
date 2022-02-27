@@ -9,11 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform leftLimit;
 
     [SerializeField] private ParticleSystem splashEffect;
-    //[SerializeField] private OrderManager orderManager;
-
 
     Vector3 startPosition;
     float dir=0;
+
     private void Start()
     {
         startPosition = transform.position;
@@ -21,23 +20,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
+        if(!GameManager.instance.IsGameOver())
+        {
 #if UNITY_EDITOR
-        dir = GetKeyboardAxis();
+            dir = GetKeyboardAxis();
 #else
         dir =  GetJoysticAxis();
 #endif
 
-        Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized * speed;
-        if(transform.position.x >= rightLimit.position.x)
-        {
-            transform.position = rightLimit.position;
-        }
-        else if(transform.position.x <= leftLimit.position.x)
-        {
-            transform.position = leftLimit.position;
-        }
-        transform.Translate(movDirection * Time.deltaTime,Space.Self);        
+            Vector3 movDirection = new Vector3(dir, 0.0f, 0.0f).normalized * speed;
+            if (transform.position.x >= rightLimit.position.x)
+            {
+                transform.position = rightLimit.position;
+            }
+            else if (transform.position.x <= leftLimit.position.x)
+            {
+                transform.position = leftLimit.position;
+            }
+            transform.Translate(movDirection * Time.deltaTime, Space.Self);
+        } 
     }
 
     float GetJoysticAxis()
@@ -71,7 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             GameManager.instance.AddScore();
         }
-        else if(other.gameObject.tag=="Bomb")
+        else if(other.gameObject.tag=="RottenFood")
         {
             GameManager.instance.SubstractTries();
         }

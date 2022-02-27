@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 23228679212843102}
   - component: {fileID: 6995527333286055556}
   - component: {fileID: 919396883144306445}
-  - component: {fileID: 6552283533590282207}
   - component: {fileID: 1820196646853813654}
   m_Layer: 0
   m_Name: Ribs
@@ -185,7 +184,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fallSpeed: 0.04
   rotateSpeed: 50
-  bomb: 0
 --- !u!54 &919396883144306445
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -202,19 +200,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 118
   m_CollisionDetection: 0
---- !u!114 &6552283533590282207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1519909849242270}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7781f69eda711d6489cd1c2aebcd402a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  seconds: 12
 --- !u!65 &1820196646853813654
 BoxCollider:
   m_ObjectHideFlags: 0

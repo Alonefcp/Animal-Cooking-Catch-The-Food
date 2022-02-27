@@ -13,7 +13,7 @@ public class Food : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.instance.isTracked())
+        if(GameManager.instance.isTracked() && !GameManager.instance.IsGameOver())
         {
                    
             transform.Rotate(Vector3.forward * Time.deltaTime * rotateSpeed * rotateDir);
