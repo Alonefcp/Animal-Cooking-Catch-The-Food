@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject mainMenu;
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject endMenu;
+    [SerializeField] private AudioSource buttonAudioSource;
+    [SerializeField] private AudioSource musicAudioSource;
 
     [SerializeField] private int nTries;
 
@@ -73,6 +75,8 @@ public class GameManager : MonoBehaviour
 //========================================== Scenes ========================================
     public void StartPlaying()
     {
+
+        buttonAudioSource.Play();
         gameOver = false;
         mainMenu.SetActive(false);
         score = 0;
@@ -89,6 +93,8 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
+        buttonAudioSource.Play();
+        
         nTries = 4;
         gameOver = true;
 
@@ -121,6 +127,7 @@ public class GameManager : MonoBehaviour
         nTries = 4;
        
         inGameMenu.SetActive(false);
+        player.ResetPlayer();
         endMenu.SetActive(true);
 
         if(score > highScore)

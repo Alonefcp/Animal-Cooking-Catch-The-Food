@@ -9,6 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Transform leftLimit;
 
     [SerializeField] private ParticleSystem splashEffect;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip clip;
+    [SerializeField] private AudioSource audioSource2;
+    [SerializeField] private AudioClip clip2;
 
     Vector3 startPosition;
     float dir=0;
@@ -70,12 +74,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.gameObject.tag == "Food")
         {
+            audioSource.PlayOneShot(clip);
             GameManager.instance.AddScore();
         }
         else if(other.gameObject.tag=="RottenFood")
         {
             GameManager.instance.SubstractTries();
+            audioSource2.PlayOneShot(clip2);
         }
+        
+        
         splashEffect.Play();          
         GameObject.Destroy(other.gameObject);
     }
