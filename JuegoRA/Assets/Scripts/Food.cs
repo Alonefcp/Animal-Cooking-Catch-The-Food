@@ -13,6 +13,7 @@ public class Food : MonoBehaviour
 
     private void Update()
     {
+        //Here we move and rotate the food
         if(GameManager.instance.isTracked() && !GameManager.instance.IsGameOver())
         {
                    

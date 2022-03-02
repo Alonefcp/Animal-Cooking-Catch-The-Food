@@ -1,0 +1,3 @@
+Rellenar el readme
+Intentar buscar sonido de salpicadura
+Comentar el codigo

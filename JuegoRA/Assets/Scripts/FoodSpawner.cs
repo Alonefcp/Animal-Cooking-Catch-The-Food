@@ -15,11 +15,14 @@ public class FoodSpawner : MonoBehaviour
     {      
         previousSpawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
 
+        //Here we start spawning food
         InvokeRepeating("SpawnFruit",0.2f, Random.Range(minSpawnTime, maxSpawnTime));
     }
 
     void SpawnFruit()
-    {                    
+    {   
+
+        //Here we instantiate a food prefab and we check that the spawn point is different every time
         if(GameManager.instance.isTracked() && !GameManager.instance.IsGameOver())
         {
             Transform spawnPoint = spawnPoints[Random.Range(0,spawnPoints.Length)];

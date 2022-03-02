@@ -252,7 +252,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1365852808}
+  - {fileID: 883935792}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1765,6 +1765,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838174897}
   m_CullTransparentMesh: 1
+--- !u!21 &883935792
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 'ImageTarget_scaledMaterial
+
+    24230'
+  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 8f6ad054648d45429c7eef1bab5132ff, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats: []
+    m_Colors:
+    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
+  m_BuildTextureStacks: []
 --- !u!1 &1061535300
 GameObject:
   m_ObjectHideFlags: 0
@@ -2281,36 +2311,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c7304d99a1f77d4c9032fdb5fa34970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &1365852808
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 'ImageTarget_scaledMaterial
-
-    45018'
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8f6ad054648d45429c7eef1bab5132ff, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Ints: []
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
-  m_BuildTextureStacks: []
 --- !u!1 &1426120045
 GameObject:
   m_ObjectHideFlags: 0
@@ -3671,6 +3671,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 274612235386696977, guid: ce4089d7d27408b4cafb37d567d341df,
         type: 3}
+      propertyPath: clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6996806c6f6dfb141a44bafd94a9db12, type: 3}
+    - target: {fileID: 274612235386696977, guid: ce4089d7d27408b4cafb37d567d341df,
+        type: 3}
       propertyPath: joystic
       value: 
       objectReference: {fileID: 245988042}
@@ -3684,6 +3689,11 @@ PrefabInstance:
       propertyPath: rightLimit
       value: 
       objectReference: {fileID: 238084352}
+    - target: {fileID: 274612235386697204, guid: ce4089d7d27408b4cafb37d567d341df,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6996806c6f6dfb141a44bafd94a9db12, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ce4089d7d27408b4cafb37d567d341df, type: 3}
 --- !u!114 &274612235386697199 stripped

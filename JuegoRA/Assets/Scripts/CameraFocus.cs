@@ -5,7 +5,7 @@ using Vuforia;
 
 public class CameraFocus : MonoBehaviour
 {
-
+    //Enables auto focus on the camera
     private void Start()
     {
         VuforiaApplication.Instance.OnVuforiaStarted += StartVuforiaFocus;

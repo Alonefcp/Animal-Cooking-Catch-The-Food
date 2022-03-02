@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject endMenu;
     [SerializeField] private AudioSource buttonAudioSource;
-    [SerializeField] private AudioSource musicAudioSource;
 
     [SerializeField] private int nTries;
 
@@ -38,12 +37,19 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
-
+    /// <summary>
+    /// Enables or disables when the camera is tracking the image target
+    /// </summary>
+    /// <param name="b"></param>
     public void EnableTracking(bool b)
     {
         tracked = b;
     }
 
+    /// <summary>
+    /// Returns if we are tracking the image target
+    /// </summary>
+    /// <returns></returns>
     public bool isTracked()
     {
         return tracked;
@@ -51,6 +57,9 @@ public class GameManager : MonoBehaviour
   
 
 //========================================== Score ======================================
+    /// <summary>
+    /// Adds one score point
+    /// </summary>
     public void AddScore()
     {
         if(scoreText!=null)
@@ -63,6 +72,9 @@ public class GameManager : MonoBehaviour
 
 //========================================== Lives =====================================
 
+    /// <summary>
+    /// Substract one live/tries
+    /// </summary>
     public void SubstractTries()
     {
         nTries--;
@@ -71,8 +83,16 @@ public class GameManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Returns if the game is over
+    /// </summary>
+    /// <returns></returns>
     public bool IsGameOver() { return gameOver; }
 //========================================== Scenes ========================================
+
+    /// <summary>
+    /// Activates the UI in game
+    /// </summary>
     public void StartPlaying()
     {
 
@@ -91,6 +111,9 @@ public class GameManager : MonoBehaviour
         foodSpawner.gameObject.SetActive(true);
     }
 
+    /// <summary>
+    /// Activates the main menu UI
+    /// </summary>
     public void MainMenu()
     {
         buttonAudioSource.Play();
@@ -108,19 +131,12 @@ public class GameManager : MonoBehaviour
         endMenu.SetActive(false);
         mainMenu.SetActive(true);
 
-        if (score > highScore)
-        {
-            highScore = score;
-            highScoreTextMainMenu.text = "¡New High Score: " + highScore.ToString() + "!";
-        }
-        else
-        {
-            highScoreTextMainMenu.text = "High Score: " + highScore.ToString();
-        }
-
-        score = 0;
+        UpdateScore(highScoreTextMainMenu);
     } 
 
+    /// <summary>
+    /// Activates the game over UI
+    /// </summary>
     private void GameOver()
     {
         gameOver = true;
@@ -130,16 +146,26 @@ public class GameManager : MonoBehaviour
         player.ResetPlayer();
         endMenu.SetActive(true);
 
-        if(score > highScore)
+        UpdateScore(highScoreTextEndMenu);           
+    }
+
+
+    /// <summary>
+    /// Updates the score and its text
+    /// </summary>
+    /// <param name="uiText">text to be updated</param>
+    private void UpdateScore(Text uiText)
+    {
+        if (score > highScore)
         {
             highScore = score;
-            highScoreTextEndMenu.text = "¡New High Score: " + highScore.ToString() + "!";
+            uiText.text = "¡New High Score: " + highScore.ToString() + "!";
         }
         else
         {
-            highScoreTextEndMenu.text = "High Score: " + highScore.ToString();
+            uiText.text = "High Score: " + highScore.ToString();
         }
-        
-        score = 0;           
+
+        score = 0;
     }
 }

@@ -7,6 +7,7 @@ public class DestroyAfterSeconds : MonoBehaviour
 
     void Start()
     {
+        //Destroys the object after an amount of time
         GameObject.Destroy(gameObject, seconds);
     }
 }

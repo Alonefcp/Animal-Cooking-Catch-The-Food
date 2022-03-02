@@ -19,11 +19,13 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        //Initial position
         startPosition = transform.position;
     }
 
     void Update()
     {
+        //Here we move the player
         if(!GameManager.instance.IsGameOver())
         {
 #if UNITY_EDITOR
@@ -45,6 +47,10 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// Rretirns the joystick axis
+    /// </summary>
+    /// <returns></returns>
     float GetJoysticAxis()
     {
         float dir;
@@ -64,6 +70,10 @@ public class PlayerController : MonoBehaviour
         return dir;
     }
 
+    /// <summary>
+    /// Returns the keyboard input axis
+    /// </summary>
+    /// <returns></returns>
     float GetKeyboardAxis()
     {
         return Input.GetAxisRaw("Horizontal");
@@ -88,9 +98,21 @@ public class PlayerController : MonoBehaviour
         GameObject.Destroy(other.gameObject);
     }
 
+    /// <summary>
+    /// Sets te player position to its initial position and the joystick too
+    /// </summary>
     public void ResetPlayer()
     {
         transform.position = startPosition;
+        splashEffect.gameObject.SetActive(true);
         joystic.ResetJoystick(Vector2.zero);
+    }
+
+    /// <summary>
+    /// Disables the player splash effect
+    /// </summary>
+    public void DisableSlaphEffect()
+    {
+        splashEffect.gameObject.SetActive(false);
     }
 }
